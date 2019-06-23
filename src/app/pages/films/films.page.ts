@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-films',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmsPage implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  films: Observable<any>;
 
   ngOnInit() {
+    this.films = this.http.get('https://swapi.co/api/films');
+    this.films.subscribe(data => {
+      console.log('my data: ', data);
+    });
   }
+
+  openDetails(film) {
+    // this.navController.navigateForward('/tabs/films/42');
+    this.router.navigateByUrl('/tabs/films/42');
+  }
+
+  // goToPlanets() {
+  //   this.navController.navigateRoot('/tabs/planets');
+  //   // this.router.navigateByUrl('/tabs/planets');
+  // }
 
 }
