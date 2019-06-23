@@ -17,14 +17,13 @@ export class FilmsPage implements OnInit {
 
   ngOnInit() {
     this.films = this.http.get('https://swapi.co/api/films');
-    this.films.subscribe(data => {
-      console.log('my data: ', data);
-    });
   }
 
   openDetails(film) {
-    // this.navController.navigateForward('/tabs/films/42');
-    this.router.navigateByUrl('/tabs/films/42');
+    const split = film.url.split('/');
+    const filmId = split[split.length - 2];
+    // console.log(filmId);
+    this.router.navigateByUrl(`/tabs/films/${filmId}`);
   }
 
   // goToPlanets() {
