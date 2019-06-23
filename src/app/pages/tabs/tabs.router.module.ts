@@ -8,42 +8,41 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'films',
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../films/films.module#FilmsPageModule'
+          },
+          {
+            path: ':id',
+            loadChildren: '../film-details/film-details.module#FilmDetailsPageModule'
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'people',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../people/people.module#PeoplePageModule'
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'planets',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../planets/planets.module#PlanetsPageModule'
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/films',
     pathMatch: 'full'
   }
 ];
