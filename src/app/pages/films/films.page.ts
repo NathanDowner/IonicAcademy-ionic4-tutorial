@@ -1,7 +1,7 @@
+import { ApiService } from 'src/app/api.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,12 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class FilmsPage implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   films: Observable<any>;
 
   ngOnInit() {
-    this.films = this.http.get('https://swapi.co/api/films');
+    this.films = this.api.getFilms();
   }
 
   openDetails(film) {
